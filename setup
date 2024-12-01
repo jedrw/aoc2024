@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DAY=${1}
+
+cp -r day0 "day${DAY}"
+find ./day${DAY} -type f | xargs sed -i "s/day0/day${DAY}/g" 
+
+curl https://adventofcode.com/2024/day/${DAY}/input --cookie "session=${SESSION}" -o ./day${DAY}/input.txt
+
