@@ -5,7 +5,12 @@ import (
 	"os"
 )
 
-func parse(file *os.File) []string {
+func Parse(filePath string) []string {
+	file, err := os.Open(filePath)
+	if err != nil {
+		panic(err)
+	}
+
 	lines := []string{}
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
@@ -15,12 +20,7 @@ func parse(file *os.File) []string {
 	return lines
 }
 
-func Compute(inputFile string) int {
-	file, err := os.Open(inputFile)
-	if err != nil {
-		panic(err)
-	}
+func Compute(input []string) int {
 
-	lines := parse(file)
-	return len(lines)
+	return len(input)
 }

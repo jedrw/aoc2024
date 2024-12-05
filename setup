@@ -1,9 +1,32 @@
 #!/bin/bash
 
 DAY=${1}
+PART=${2}
 
-cp -r day0 "day${DAY}"
-find ./day${DAY} -type f | xargs sed -i "s/day0/day${DAY}/g" 
+if [[ -z "${SESSION}" ]]; then 
+    echo "SESSION is unset"  
+    exit 1
+fi
 
-curl https://adventofcode.com/2024/day/${DAY}/input --cookie "session=${SESSION}" -o ./day${DAY}/input.txt
+
+if [[ -z "${DAY}" ]]; then 
+    echo "missing day arg"  
+    exit 1
+fi
+
+if [[ -z "${PART}" ]]; then 
+    echo "missing part arg"  
+    exit 1
+fi
+
+if [[ "${PART}" == "1" ]]; then 
+    cp -r day0 "day${DAY}"
+    find ./day${DAY} -type f | xargs sed -i "s/day0/day${DAY}/g" 
+    curl https://adventofcode.com/2024/day/${DAY}/input --cookie "session=${SESSION}" -o ./day${DAY}/input.txt
+fi
+
+if [[ "${PART}" == "2" ]]; then 
+    cp -r "day${DAY}/part1" "day${DAY}/part2"
+    find ./day${DAY}/part2 -type f | xargs sed -i "s/part1/part2/g" 
+fi
 

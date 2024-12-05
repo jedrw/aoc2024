@@ -3,9 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/jedrw/aoc2024/day0/part1/answer"
+	"day0/part1/answer"
 )
 
 func main() {
-	fmt.Println(answer.Compute("../input.txt"))
+	input := answer.Parse("../input.txt")
+	fmt.Println(answer.Compute(input))
 }
